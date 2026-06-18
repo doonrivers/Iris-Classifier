@@ -38,3 +38,28 @@ def plot_confusion_matrix(y_true: list, y_pred: list, label_list: list, title: s
     plt.tight_layout()
 
     return fig
+    # Source - https://stackoverflow.com/a/56107843
+# Posted by sentence, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-06-18, License - CC BY-SA 4.0
+
+from sklearn import svm
+from sklearn import datasets
+
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+
+clf = svm.SVC()
+clf.fit(X, y)  
+
+##########################
+# SAVE-LOAD using joblib #
+##########################
+import joblib
+
+# save
+joblib.dump(clf, "model.pkl") 
+
+# load
+clf2 = joblib.load("model.pkl")
+
+clf2.predict(X[0:1])

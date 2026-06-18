@@ -63,3 +63,9 @@ joblib.dump(clf, "model.pkl")
 clf2 = joblib.load("model.pkl")
 
 clf2.predict(X[0:1])
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+y_true = [0,1,1,1,0]
+y_pred = [1,1,1,1,0]
+cm = confusion_matrix(y_true, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot().figure_.savefig('confusion_matrix.png')
